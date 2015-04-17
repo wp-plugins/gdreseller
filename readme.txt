@@ -30,8 +30,13 @@ This plugin helps Godaddy resellers setup "Add to Cart" items via shortcodes as 
 2. Add your products to the list
 3. Add your domain search widget
 4. Add your shortcodes to your posts or pages 
+5. Find GD settings under the general settings menu
+6. Add your Godaddy ResellerID and consider allowing our footer for credit or donating to our project
 
 == Changelog ==
 
 = 1.0 =
 * Initial release version.
+= 1.1 = 
+* Fixed problems with Godaddy Reseller ID information
+* Fixed problems with domain search widget functionality

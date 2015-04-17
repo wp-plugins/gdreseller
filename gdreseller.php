@@ -1,12 +1,8 @@
 <?php
 /* 	<WP plugin data>
-  Plugin Name:   GDReseller Free version
-  Plugin URI:    https://wordpress.org/plugins/gdreseller/
-  Author: Tamer Ziady
-  Author URI: https://www.in-design.com
-  Version:       1.0
-  License: GPL2
-  Description: This plugin allows you to send product purchases and domain name searches to be executed via your Godaddy Storefront. 
+ * 	Plugin Name:   GDReseller Free version
+ * 	Version:       1.1
+ *	
 */
 
 define( "PLUGIN_PATH", plugin_dir_url( __FILE__ ) );
@@ -291,6 +287,7 @@ function gdr_manage_form_columns( $column, $post_id ) {
 function gdr_product_func( $atts ) {
     global $wpdb;
     $get_id = $atts['id'];
+    $footer_text = '<div class="branding">Plugin designed by <a href="http://netforcelabs.com/">Netforce Labs</a> and commissioned by <a href="https://www.in-design.com">Intuitive Design</a>. More information can be found <a href="https://www.in-design.com/gdreseller">here</a>.</div>';
     $get_title = get_post_meta( $get_id, 'product_form_form_title', true );
     $get_desc = get_post_meta( $get_id, 'product_form_form_desc', true );
     $get_count = get_post_meta( $get_id, 'product_form_count', true );
@@ -321,7 +318,7 @@ function gdr_product_func( $atts ) {
     $get_form .= '<input type="submit" value="Add to Cart">';
     $get_form .= '</form>';
     if(get_option('footer_text')){
-    $get_form .= '<div style="font-size: 75%; background-color: black; color: grey">'.get_option('footer_text');
+    $get_form .= '<div style="font-size: 75%; background-color: black; color: grey">'.$footer_text;
     $get_form .= '</div>';
     }
 
@@ -331,18 +328,21 @@ function gdr_product_func( $atts ) {
 add_shortcode( 'product', 'gdr_product_func' );
 function gdr_domain_search_func($atts){
     global $wpdb;
+    $footer_text = '<div class="branding">Plugin designed by <a href="http://netforcelabs.com/">Netforce Labs</a> and commissioned by <a href="https://www.in-design.com">Intuitive Design</a>. More information can be found <a href="https://www.in-design.com/gdreseller">here</a>.</div>';
+
     $get_id = $atts['id'];
     $get_form_title = $atts['title'];
     $get_form_desc = $atts['desc'];
-    $get_resler_id = get_post_meta( $get_id, 'product_form_reseller_id', true );
     $get_form =  '<div class="form_container">';
     $get_form .=  '<h3>'.$get_form_title.'</h3>';
     $get_form .= '<p>'.$get_form_desc.'</p>';
-    $get_form .= '<form method="post" action="https://www.securepaynet.net/gdshop/registrar/search.asp?prog_id='.$get_resler_id.'" target="_blank">';
+    $get_form .= '<form method="post" action="http://secure.cheapdomainregistration.xyz/domains/search.aspx?prog_id='.$get_id.'" target="_blank">';
     $get_form .= '<input style="display: inline; width: 317px; border:1px solid blue; border-radius: 6px 0px 0px 6px; " maxlength="63" name="domainToCheck" type="text" placeholder="Grab your domain now!" />';
     $get_form .= '<input style="display: inline; text-align: center; width: 15%; height: 48px; border: 1px solid #333333; margin-top: 0px; background: blue; border-radius: 0px 6px 6px 0px; color: #ffffff;" name="submit" type="submit" value="GO!" />';
+    $get_form .=  '<input name="checkAvail" type="hidden" value="1"/> 
+	    <input name="JScriptOn" type="hidden" value="yes"/> ';
     if(get_option('footer_text')){
-    $get_form .= '<div style="font-size: 75%; background-color: black; color: grey">'.get_option('footer_text');
+    $get_form .= '<div style="font-size: 75%; background-color: black; color: grey">'.$footer_text;
     $get_form .= '</div>';
     }
     $get_form .= '</div>';
@@ -374,6 +374,7 @@ $title = apply_filters( 'widget_title', $instance['title'] );
 $desc = apply_filters( 'widget_desc', $instance['desc'] );
 $reseller_id = apply_filters( 'widget_reseller_id', $instance['reseller_id'] );
 $url = apply_filters( 'widget_url', $instance['url'] );
+$footer_text = '<div class="branding">Plugin designed by <a href="http://netforcelabs.com/">Netforce Labs</a> and commissioned by <a href="https://www.in-design.com">Intuitive Design</a>. More information can be found <a href="https://www.in-design.com/gdreseller">here</a>.</div>';
 // before and after widget arguments are defined by themes
 echo $args['before_widget'];
 if ( ! empty( $title ) )
@@ -385,8 +386,10 @@ echo $args['before_title'] . $title . $args['after_title'];
     echo  '<form method="post" action="'.$url.$reseller_id.'" target="_blank">';
     echo  '<input style="display: inline; width: 317px; border:1px solid blue; border-radius: 6px 0px 0px 6px; " maxlength="63" name="domainToCheck" type="text" placeholder="Grab your domain now!" />';
     echo  '<input style="display: inline; text-align: center; width: 15%; height: 48px; border: 1px solid #333333; margin-top: 0px; background: blue; border-radius: 0px 6px 6px 0px; color: #ffffff;" name="submit" type="submit" value="GO!" /></form>';
+    echo  '<input name="checkAvail" type="hidden" value="1"/> 
+	    <input name="JScriptOn" type="hidden" value="yes"/> ';
     if(get_option('footer_text')){
-	echo  '<div style="font-size: 75%; background-color: black; color: grey">'.get_option('footer_text');
+	echo  '<div style="font-size: 75%; background-color: black; color: grey">'.$footer_text;
 	echo  '</div>';
     }
 echo $args['after_widget'];
@@ -459,14 +462,25 @@ function gdr_menu() {
     add_options_page( 'GD Options', 'GD Options', 'manage_options', 'gdr_options', 'gdr_menu_options' );
 }
 function gdr_menu_options(){
+    global $wpdb;
     if(isset($_POST['form_submit'])){
 	$footer_text = $_POST['footer_text'];
 	$reseller_id = $_POST['reseller_id'];
 	update_option('footer_text',$footer_text);
 	update_option('reseller_id',$reseller_id);
+	$get_results = $wpdb->get_results("select * from {$wpdb->prefix}posts where post_type='gdr_form'");
+	foreach($get_results as $get_result){
+	    update_post_meta($get_result->ID,'product_form_reseller_id',$reseller_id);
+	}
     }
     $reseller_id= get_option('reseller_id');
     $footer_text = get_option('footer_text');
+    if(isset($footer_text) && $footer_text== '1'){
+	$check = 'checked';
+    }
+    else{
+	$check = '';
+    }
     echo '<div>';
     echo '<h1>GD Options</h1>';
     echo '<form id="gdr_options_form" action="" method="post">
@@ -479,10 +493,10 @@ function gdr_menu_options(){
 		    </td>
 		</tr>
 		<tr><th scope="row">
-		    <label for="footer_text">Footer Text</label>
+		    <label for="footer_text">Allow Footer Text</label>
 		    </th>
 		    <td>
-			<textarea name="footer_text" rows="4" cols="30">'.$footer_text.'</textarea>
+			<input type="checkbox" name="footer_text" value="1" '.$check.'> (Please consider supporting us by donating or atleast allowing our code to be shown on your site.)
 		    </td>
 		</tr>
 	    </table>
