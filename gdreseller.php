@@ -1,9 +1,27 @@
 <?php
 /* 	<WP plugin data>
  * 	Plugin Name:   GDReseller Free version
- * 	Version:       1.1
+ *  Plugin URI: https://www.in-design.com/GDReseller
+ *  Description: Allow Godaddy resellers to redirect product sales and perform domain name search through their reseller
+ *  storefront
+ *  Author: James Karte
+ *  Author URI: http://netforcelabs.com/
+ * 	Version: 1.1
+ *
+ *  GDReseller is a plugin designed out of the need for Godaddy resellers needing an easy way to connect their WP site to
+ *  their Godaddy Reseller Storefront. This allows the sending of products and doing domain name searches easily from
+ *  your WP site to be performed at your Godaddy Storefront.
  *	
-*/
+ *
+ *  GDReseller is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Easy Digital Downloads. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 define( "PLUGIN_PATH", plugin_dir_url( __FILE__ ) );
 
