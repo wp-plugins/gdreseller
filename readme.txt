@@ -32,7 +32,18 @@ This plugin helps Godaddy resellers setup "Add to Cart" items via shortcodes as 
 4. Add your shortcodes to your posts or pages 
 5. Find GD settings under the general settings menu
 6. Add your Godaddy ResellerID and consider allowing our footer for credit or donating to our project
-
+7. Under tools select import and install wordpress import
+8. products from provided XML file - premuim version only 
+9. activate plugin and run importer
+10. Browse for XML product and catagory files
+11. import them both
+12. Upload and import the different catagories XML file
+13. Import the catagories
+14. Import the posts
+15. Assign posts to an active user
+16. Product details information
+17. Add widget to location
+18. Configure your domain search widget
 == Changelog ==
 
 = 1.0 =
