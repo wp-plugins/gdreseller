@@ -18,7 +18,7 @@ Premuim Version Available:
 A premium version of the plugin is available with all products populated and personalized support. 
 Please visit [GDReseller Page](https://www.in-design.com/gdreseller "Godaddy Reseller and Domain Search Plugin Page")!
 Please consider the premuim plug or help support our project by donating to continue the efforts of development and maintaining this software. 
-Custimized installations and features are always welcome.
+Customized installations and features are always welcome.
 
 == Installation ==
 
