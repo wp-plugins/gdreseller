@@ -11,11 +11,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 This plugin helps Godaddy resellers setup a wordpress site to easily interface with their Godaddy Storefront
 
 == Description ==
-# GDReseller - Godaddy Reseller Wordpress Tools 
+GDReseller - Godaddy Reseller Wordpress Tools: 
 This plugin helps Godaddy resellers setup "Add to Cart" items via shortcodes as well as a domain widget and shortcode to allow searching of domain names through a resellers storefront
 
-## Premuim Version Available
-A premium version of the plugin is available with all products populated and personalized support. Please visit [Wordpress Godaddy Reseller and Domain Search Plugin Page] (https://www.in-design.com/gdreseller "Godaddy Reseller and Domain Search Plugin Page. Please consider the premuim plug or help support our project by donating to continue the efforts of development and maintaining this software. Custimized installations and features are  always welcome.
+Premuim Version Available:
+A premium version of the plugin is available with all products populated and personalized support. 
+Please visit [GDReseller Page](https://www.in-design.com/gdreseller "Godaddy Reseller and Domain Search Plugin Page")!
+Please consider the premuim plug or help support our project by donating to continue the efforts of development and maintaining this software. 
+Custimized installations and features are always welcome.
 
 == Installation ==
 
