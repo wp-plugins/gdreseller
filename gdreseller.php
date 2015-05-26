@@ -32,6 +32,7 @@ add_action('admin_enqueue_scripts','admin_scripts');
 function admin_scripts(){
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script('jscript', PLUGIN_PATH . 'js/jscript.js' );
+	wp_enqueue_style('wpts-css', PLUGIN_PATH . 'css/style.css' );
 }
 
 function gdr_post_type() {
@@ -473,6 +474,12 @@ add_action( 'widgets_init', 'gdr_domain_form_widget_load_widget' );
 //group reseller taxonomy
 add_action( 'init', 'grd_taxonomy', 0 );
 
+// dismissable notice admin side
+add_action( 'admin_init', 'gdr_stop_bugging_me' );
+
+//Check Installation Date
+add_action( 'admin_init', 'gdr_check_installation_date' );
+
 //add menu 
 add_action( 'admin_menu', 'gdr_menu' );
 
@@ -530,4 +537,72 @@ function gdr_menu_options(){
 	    </form>';    
     echo '</div>';
 }
+
+
+
+	function gdr_stop_bugging_me() {
+		$nobug = "";
+		if ( isset( $_GET['gdr_nobug'] ) ) {
+			$nobug = esc_attr( $_GET['gdr_nobug'] );
+		}
+		if ( 1 == $nobug ) {
+			add_option( 'gdr_review_stop_bugging_me', TRUE );
+		}
+	}
+			
+	/*
+		gdr_check_installation_date()
+		checks the user installation date, and adds our action 
+		- if it's past 1 weeks we ask the user for a review :)
+		@since v1.3
+	*/
+	function gdr_check_installation_date() {	
+		
+		// add a new option to store the plugin activation date/time
+		// @since v1.3
+		// this is used to notify the user that they should review after 1 week
+		if ( !get_option( 'gdr_activation_date' ) ) {
+			add_option( 'gdr_activation_date', strtotime( "now" ) );
+		}
+		
+		$stop_bugging_me = get_option( 'gdr_review_stop_bugging_me' );
+		
+		if( !$stop_bugging_me ) {
+			$install_date = get_option( 'gdr_activation_date' );
+			$past_date = strtotime( '-7 days' );
+			if ( $past_date >= $install_date && current_user_can( 'install_plugins' ) ) {
+				add_action( 'admin_notices' , 'gdr_display_review_us_notice' );
+			}
+		}
+		
+	}
+			
+	/* 
+		Display our admin notification
+		asking for a review, and for user feedback 
+		@since v1.3
+	*/
+	function gdr_display_review_us_notice() {	
+		/* Lets only display our admin notice on YT4WP pages to not annoy the hell out of people :) */
+		if ( in_array( get_current_screen()->base , array( 'dashboard' , 'toplevel_page_gdr' , 'gdr_page_gdr-custom-set' , 'gdr_page_gdr' , 'gdr_page_gdr-upgrade' , 'post' ) ) ) {
+			/* Review URL - Change to the URL of your plugin on WordPress.org */
+			$reviewurl = 'https://wordpress.org/support/view/plugin-reviews/gdreseller';
+			$go_pro_url = 'https://www.in-design.com/gdreseller';
+			$nobugurl = add_query_arg( 'gdr_nobug', '1', admin_url() );
+			global $current_user;
+			get_currentuserinfo();
+			if ( '' != $current_user->user_firstname ) {
+				$review_message = '<p>' . sprintf( __( "Hey" , "gdr" ) . " " . $current_user->user_firstname . __( ", You've been using" , "gdr" ) . " <strong>GDReseller</strong> " . __( "for 1 week now. We certainly hope you're enjoying the power and all the features packed into the free version.  If so, leave us a review, we'd love to hear what you have to say. If you're really enjoying the plugin, consider upgrading to the pro version for some added features and premium support." , "gdr" ) . "<br /><br /> <span class='button-container'> <a href='%s' target='_blank' class='button-secondary'>" . __( "Leave A Review" , "gdr" ) . "</a> <a href='%s?utm_source=gdr-1week-notice' target='_blank' class='button-secondary'>" . __( "Upgrade to Pro" , "gdr" ) . "</a> <a href='%s' class='button-secondary'>" . __( "Dismiss" , "gdr" ) . "</a> </span>", $reviewurl, $go_pro_url, $nobugurl ) . '</p>';
+			} else {
+				$review_message = '<p>' . sprintf( __( "Hey there, it looks like you've been using" , "gdr" ) . " <strong>GDReseller</strong> " . __( "for 1 week now. We certainly hope you're enjoying the power and all the features packed into the free version.  If so, leave us a review, we'd love to hear what you have to say. If you're really enjoying the plugin, consider upgrading to the pro version for some added features and premium support." , "gdr" ) . "<br /><br /> <span class='button-container'> <a href='%s' target='_blank' class='button-secondary'>" . __( "Leave A Review" , "gdr" ) . "</a> <a href='%s?utm_source=gdr-1week-notice' target='_blank' class='button-secondary'>" . __( "Upgrade to Pro" , "gdr" ) . "</a> <a href='%s' class='button-secondary'>" . __( "Dismiss" , "gdr" ) . "</a> </span>", $reviewurl, $go_pro_url, $nobugurl ) . '</p>';
+			}
+			?>
+				<div id="review-gdr-notice">
+					<?php echo $review_message; ?>
+				</div>
+			<?php
+		}
+	}
+	
+
 ?>

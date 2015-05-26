@@ -54,3 +54,5 @@ Customized installations and features are always welcome.
 * Finalized Screenshots and Installation instructions
 = 1.3 =
 * Fixing issues with file versions, readme, and problems with shortcodes
+= 1.4 =
+* Added new functionality for Add to Cart and donation information
