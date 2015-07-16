@@ -7,7 +7,7 @@
  *  storefront
  *  Author: Intuitive Design
  *  Author URI: https://www.in-design.com/
- *  Version: 1.3
+ *  Version: 1.5
  *
  *  GDReseller is a plugin designed out of the need for Godaddy resellers needing an easy way to connect their WP site to
  *  their Godaddy Reseller Storefront. This allows the sending of products and doing domain name searches easily from
