@@ -3,8 +3,8 @@ Contributors: tziady, navi87
 Donate link: http://www.in-design.com/gdreseller
 Tags: godaddy reseller, storefront interface, domain name searches
 Requires at least: 3.0.1
-Tested up to: 4.1.1
-Stable tag: 4.1.1
+Tested up to: 4.2.2
+Stable tag: 4.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,7 @@ Customized installations and features are always welcome.
 1. Populate your products and reseller ID or import product XML file - premium version only
 1. Start using the shortcodes in your pages or posts or anywhere else
 1. Configure your Domain Name Search widget and start using it throughout your site
+1. Look through our screenshots. They clearly explain every step needed to configure the plugin
 
 == Frequently Asked Questions ==
 
@@ -39,7 +40,18 @@ Customized installations and features are always welcome.
 4. Add your shortcodes to your posts or pages
 5. Find GD settings under the general settings menu
 6. Add your Godaddy ResellerID and consider allowing our footer for credit or donating to our project
-7. Import products from XML file included in the archive (premium version only)
+8. Fill out the form and make sure that Form Action URL is "https://www.securepaynet.net/gdshop/xt_orderform_addmany.asp?app_hdr="
+9. Import products from XML file included in the archive (premium version only). Using Wordpress importer under Tools/import
+10. Activate the wordpress-importer plugin
+11. Using tools import; upload the XML files
+12. Import default-categories.xml first
+13. Click upload file and import
+14. Submit import
+15. Import default-posts.xml
+16. Assign author to a user already existing in your wordpress installation like your administrator and submit
+17. Make sure to change Form Title and Form Description for the products to reflect what you want
+18. Go under appearance and widgets. Here you will find the domain name search widget. Add it to where you like.
+19. Make sure the reseller ID is yours and the Form URL is "http://YourReseller.Website.com//domains/search.aspx?checkAvail=1&prog_id="
 
 == Changelog ==
 
@@ -56,3 +68,6 @@ Customized installations and features are always welcome.
 * Fixing issues with file versions, readme, and problems with shortcodes
 = 1.4 =
 * Added new functionality for Add to Cart and donation information
+= 1.5 =
+* Added information about configuration for clarification purposes.
+* Tested plugin functionality with latest Wordpress 4.2.2 and looked for any conflicts - passed.
