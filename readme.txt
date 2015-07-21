@@ -30,7 +30,11 @@ Customized installations and features are always welcome.
 1. Look through our screenshots. They clearly explain every step needed to configure the plugin
 
 == Frequently Asked Questions ==
+= What should the form URL for the products be? =
+https://www.secureserver.net/gdshop/xt_orderform_addmany.asp?
 
+= What should the domain name search widget post URL be? =
+http://domain.in-design.com//domains/search.aspx?checkAvail=1&prog_id= (where domain.in-design.com is your storefront URL)
 
 == Screenshots ==
 
@@ -40,7 +44,7 @@ Customized installations and features are always welcome.
 4. Add your shortcodes to your posts or pages
 5. Find GD settings under the general settings menu
 6. Add your Godaddy ResellerID and consider allowing our footer for credit or donating to our project
-8. Fill out the form and make sure that Form Action URL is "https://www.securepaynet.net/gdshop/xt_orderform_addmany.asp?app_hdr="
+8. Fill out the form and make sure that Form Action URL is "https://www.secureserver.net/gdshop/xt_orderform_addmany.asp?"
 9. Import products from XML file included in the archive (premium version only). Using Wordpress importer under Tools/import
 10. Activate the wordpress-importer plugin
 11. Using tools import; upload the XML files
