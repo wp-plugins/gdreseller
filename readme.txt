@@ -36,6 +36,16 @@ https://www.secureserver.net/gdshop/xt_orderform_addmany.asp?
 = What should the domain name search widget post URL be? =
 http://domain.in-design.com//domains/search.aspx?checkAvail=1&prog_id= (where domain.in-design.com is your storefront URL)
 
+= Is there a way to make the descriptions a bulleted list? =
+
+The description field is fully HTML capable. Please see the following example:
+
+https://www.in-design.com/GDReseller
+
+    If you scroll down the page and look at the Pro Reseller Plan example; the description is an HTML copy directly from my reseller storefront.
+   
+    So, simple answer is yes. Now, I would not recommend building tables and pages of HTML; however, you should be able to get away with most things.
+
 == Screenshots ==
 
 1. Add your reseller ID and submit
